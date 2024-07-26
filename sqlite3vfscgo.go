@@ -443,7 +443,7 @@ func goVFSCommitPhaseTwo(cfile *C.sqlite3_vfs) C.int {
 		return 0
 	}
 
-	err := C.int(file.ConfirmCommit())
+	err := file.ConfirmCommit()
 	if err != nil {
 		return errToC(err)
 	}
