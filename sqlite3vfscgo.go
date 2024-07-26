@@ -443,7 +443,7 @@ func goVFSCommitPhaseTwo(cfile *C.sqlite3_vfs) C.int {
 		return 0
 	}
 
-	return C.int(file.DeviceCharacteristics())
+	return C.int(file.ConfirmCommit())
 }
 
 func vfsFromC(cvfs *C.sqlite3_vfs) ExtendedVFSv1 {
