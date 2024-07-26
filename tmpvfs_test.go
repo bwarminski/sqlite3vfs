@@ -165,3 +165,7 @@ func (tf *TmpFile) SectorSize() int64 {
 func (tf *TmpFile) DeviceCharacteristics() DeviceCharacteristic {
 	return 0
 }
+
+func (tf *TmpFile) ConfirmCommit() error {
+	return nil
+}

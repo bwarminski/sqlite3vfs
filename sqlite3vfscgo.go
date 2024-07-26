@@ -429,6 +429,23 @@ func goVFSDeviceCharacteristics(cfile *C.sqlite3_file) C.int {
 	return C.int(file.DeviceCharacteristics())
 }
 
+//export goVFSCommitPhaseTwo
+func goVFSCommitPhaseTwo(cfile *C.sqlite3_vfs) C.int {
+	s3vfsFile := (*C.s3vfsFile)(unsafe.Pointer(cfile))
+
+	fileID := uint64(s3vfsFile.id)
+
+	fileMux.Lock()
+	file := fileMap[fileID]
+	fileMux.Unlock()
+
+	if file == nil {
+		return 0
+	}
+
+	return C.int(file.DeviceCharacteristics())
+}
+
 func vfsFromC(cvfs *C.sqlite3_vfs) ExtendedVFSv1 {
 	vfsName := C.GoString(cvfs.zName)
 	return vfsMap[vfsName]

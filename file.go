@@ -61,6 +61,9 @@ type File interface {
 	// DeviceCharacteristics returns a bit vector describing behaviors
 	// of the underlying device.
 	DeviceCharacteristics() DeviceCharacteristic
+
+	// Confirm a commit from a commit_phasetwo fcntl
+	ConfirmCommit() error
 }
 
 type SyncType int
